@@ -27,6 +27,8 @@ urlpatterns = [
 
     path('contact/', mainapp.contact, name='contact'),
     path('admin/', admin.site.urls),
+
+    path('auth/', include('authapp.urls', namespace='auth'))
 ]
 
 if settings.DEBUG:
