@@ -21,4 +21,8 @@
 
 
     <a href="#" class="search"></a>
-    <a href="#" class="basket"></a>
+    <a href="{% url 'basket:view' %}" class="basket">
+        <span>
+            {% if basket %} {{basket_quantity.quantity}} - {{basket_quantity.cost}} {% endif %}
+        </span>
+    </a>
