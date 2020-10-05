@@ -143,8 +143,15 @@ html, body {
 	position: absolute;
 	top: 63px;
 	left: 1210px;
+	text-decoration: none;
+	color: #555;
 }
 
+.basket span {
+    margin-left: 25px;
+    display: block;
+    width: 120px;
+}
 .clearfix:after {
 	content: "";
 	display: block;
