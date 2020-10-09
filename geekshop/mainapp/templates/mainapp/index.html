@@ -33,13 +33,13 @@
 		</div>
 		<div class="tab-content">
 
-			{% for chair in chairs %}
+			{% for product in products %}
 			<div class="block">
-				<a href="#"><img src="{{ chair.image.url }}" alt="chair">
+				<a href="{% url 'products:product' product.pk"><img src="/media/{{ product.name }}" alt="product">
 					<div class="text">
 						<img src="{% static 'img/icon-hover.png' %}" alt="img">
-						<h4>{{ chair.name }}</h4>
-						<p>{{ chair.short_desc }}</p>
+						<h4>{{ product.name }}</h4>
+						<p>{{ product.short_desc }}</p>
 					</div>
 				</a>
 			</div>
