@@ -4,6 +4,7 @@ from django.db import models
 class ProductCategory(models.Model):
     name = models.CharField(max_length=64, unique=True, verbose_name='категория')
     description = models.CharField(max_length=128, blank=True, verbose_name='описание')
+    is_active = models.BooleanField(default=True, verbose_name='активна')
 
     class Meta:
         verbose_name = 'категория'
