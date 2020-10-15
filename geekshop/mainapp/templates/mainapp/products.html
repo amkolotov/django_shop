@@ -1,5 +1,6 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
+{% load my_tags %}
 
 {% block title %}
 	{{ title|title }}
@@ -24,21 +25,21 @@
 		<div class="details-products">
 			<div class="details-slider">
 				<div class="slider-product">
-					<a href="{% url 'products:product' hot_product.pk %}"><img src="/media/{{ hot_product.image }}"></a>
+					<a href="{% url 'products:product' hot_product.pk %}"><img src="{{ hot_product.image|media_folder_products }}"></a>
 				</div>
 				<div class="slider-control">
 					<div class="block">
-						<a href="{% url 'products:product' hot_product.pk %}"><img src="/media/{{ hot_product.image }}" alt="">
+						<a href="{% url 'products:product' hot_product.pk %}"><img src="{{ hot_product.image|media_folder_products }}" alt="">
 							<div class="text"></div>
 						</a>
 					</div>
 					<div class="block">
-						<a href="{% url 'products:product' hot_product.pk %}"><img src="/media/{{ hot_product.image }}" alt="">
+						<a href="{% url 'products:product' hot_product.pk %}"><img src="{{ hot_product.image|media_folder_products }}" alt="">
 							<div class="text"></div>
 						</a>
 					</div>
 					<div class="block">
-						<a href="{% url 'products:product' hot_product.pk %}"><img src="/media/{{ hot_product.image }}" alt=""></a>
+						<a href="{% url 'products:product' hot_product.pk %}"><img src="{{ hot_product.image|media_folder_products }}" alt=""></a>
 					</div>
 				</div>
 			</div>
@@ -65,7 +66,7 @@
 			<div class="related-products clearfix">
 				{% for product in sample_products %}
 				<div class="block">
-					<a href="{% url 'products:product' product.pk %}"><img src="/media/{{ product.image }}" alt="">
+					<a href="{% url 'products:product' product.pk %}"><img src="{{ product.image|media_folder_products }}" alt="">
 						<div class="text">
 							<img src="/static/img/icon-hover.png" alt="img">
 							<h4>{{ product.name }}</h4>
