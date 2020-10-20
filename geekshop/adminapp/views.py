@@ -149,9 +149,7 @@ class ProductCategoryDeleteView(DeleteView):
         return super().dispatch(*args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
-        print(self)
         self.object = self.get_object()
-        print(self.object)
         self.object.is_active = False
         self.object.save()
 

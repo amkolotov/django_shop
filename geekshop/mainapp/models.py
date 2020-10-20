@@ -32,3 +32,11 @@ class Product(models.Model):
         return f'{self.name} ({self.category.name})'
 
 
+class Contacts(models.Model):
+    phone = models.CharField(max_length=15, verbose_name='телефон')
+    email = models.EmailField(verbose_name='email')
+    city = models.CharField(max_length=100, verbose_name='город')
+    address = models.CharField(max_length=100, verbose_name='адрес')
+
+    def __str__(self):
+        return self.city
