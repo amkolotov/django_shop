@@ -22,6 +22,7 @@ class Product(models.Model):
     description = models.TextField(blank=True, verbose_name='описание продукта')
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0, verbose_name='цена продукта')
     quantity = models.PositiveIntegerField(default=0, verbose_name='количество на складе')
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = 'продукт'
@@ -31,3 +32,11 @@ class Product(models.Model):
         return f'{self.name} ({self.category.name})'
 
 
+class Contacts(models.Model):
+    phone = models.CharField(max_length=15, verbose_name='телефон')
+    email = models.EmailField(verbose_name='email')
+    city = models.CharField(max_length=100, verbose_name='город')
+    address = models.CharField(max_length=100, verbose_name='адрес')
+
+    def __str__(self):
+        return self.city

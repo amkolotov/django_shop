@@ -1,5 +1,6 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
+{% load my_tags %}
 
 {% block title %}
 	{{ title|title }}
@@ -31,18 +32,19 @@
 		<a class="explore" href="#">показать все <img src="{% static 'img/arrow.png' %}" alt=""></a>
 		<div class="clearfix">
 		</div>
+
 		<div class="tab-content">
 
 			{% for product in products %}
-			<div class="block">
-				<a href="{% url 'products:product' product.pk %}"><img src="/media/{{ product.image }}" alt="product">
-					<div class="text">
-						<img src="{% static 'img/icon-hover.png' %}" alt="img">
-						<h4>{{ product.name }}</h4>
-						<p>{{ product.short_desc }}</p>
-					</div>
-				</a>
-			</div>
+                <div class="block">
+                    <a href="{% url 'products:product' product.pk %}"><img src="{{ product.image|media_folder_products }}" alt="product">
+                        <div class="text">
+                            <img src="{% static 'img/icon-hover.png' %}" alt="img">
+                            <h4>{{ product.name }}</h4>
+                            <p>{{ product.short_desc }}</p>
+                        </div>
+                    </a>
+                </div>
 			{% endfor %}
 
 		</div>

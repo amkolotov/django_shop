@@ -86,6 +86,7 @@ html, body {
     text-decoration: none;
 }
 
+
 .admin_container .menu span {
     margin-left: 10px;
     font-weight: bold;
@@ -94,6 +95,7 @@ html, body {
 }
 
 .products_list {
+    width: 1000px;
     margin-left: 250px;
 }
 
@@ -116,7 +118,7 @@ html, body {
 }
 
 .product_record {
-    height: 125px;
+    height: 175px;
     margin: 15px auto;
     position: relative;
 }
@@ -139,7 +141,6 @@ html, body {
     float: left;
     margin-top: 0px;
     margin-left: 25px;
-    width: 135px;
 }
 
 .product_record .product_desc {
@@ -151,11 +152,9 @@ html, body {
 }
 
 .product_record .summary {
-    display: block;
-    float: left;
     margin-top: 15px;
     margin-left: 25px;
-    width: 100px;
+    width: 120px;
 }
 
 .product_record img {

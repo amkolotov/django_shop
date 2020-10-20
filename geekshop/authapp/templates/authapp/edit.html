@@ -1,5 +1,6 @@
 {% extends 'authapp/base.html' %}
 {% load static %}
+{% load my_tags %}
 
 {% block title %}
     {{ title|title }}
@@ -15,5 +16,5 @@
         <a href="{% url 'main' %} ">Главная</a>
     </button>
 
-    <div class="user_avatar"><img src="/media/{{ user.avatar }}" alt="аватар"></div>
+    <div class="user_avatar"><img src="{{ user.avatar|media_folder_users }}" alt="аватар"></div>
 {% endblock %}

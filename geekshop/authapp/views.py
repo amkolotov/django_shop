@@ -1,4 +1,5 @@
 from django.contrib import auth
+from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
@@ -64,7 +65,7 @@ def register(request):
     else:
         register_form = ShopUserRegisterForm()
 
-    context = {'title':title, 'register_form':register_form}
+    context = {'title': title, 'register_form': register_form}
 
     return render(request, 'authapp/register.html', context)
 

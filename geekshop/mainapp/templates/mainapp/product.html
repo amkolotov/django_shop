@@ -1,5 +1,7 @@
 {% extends 'mainapp/base.html' %}
 {% load static %}
+{% load my_tags %}
+
 
 {% block title %}
     {{ product.name|title }}
@@ -21,27 +23,27 @@
         </div>
         <div class="detail-products">
             <div class="details-slider">
-                <img src="/media/{{ product.image }}" alt="{{ product.short_desc }}">
+                <img src="{{ product.image|media_folder_products }}" alt="{{ product.short_desc }}">
             </div>
             <div class="slider-control">
                 <div class="block">
                     <a href="#">
-                    <img src="/media/{{ product.image }}" alt="вариант 1">
+                    <img src="{{ product.image|media_folder_products  }}" alt="вариант 1">
                     </a>
                 </div>
                 <div class="block">
                     <a href="#">
-                    <img src="/media/{{ product.image }}" alt="вариант 2">
+                    <img src="{{ product.image|media_folder_products  }}" alt="вариант 2">
                     </a>
                 </div>
                 <div class="block">
                     <a href="#">
-                    <img src="/media/{{ product.image }}" alt="вариант 3">
+                    <img src="{{ product.image|media_folder_products  }}" alt="вариант 3">
                     </a>
                 </div>
             </div>
             <div class="description">
-                <h3 class="big-bold">{{ product.name }}</h3>
+                <h3 class="big-bold">{{ product.name|title }}</h3>
                 <br>
                 <p class="price"> {{ product.price }} <span>руб</span></p>
                 <a href="{% url 'basket:add' product.pk %}" class="red-button">
