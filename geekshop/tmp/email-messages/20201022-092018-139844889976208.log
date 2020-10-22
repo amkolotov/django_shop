@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0J/QvtC00YLQstC10YDQttC00LXQvdC40LUg0YPRh9C10YLQvdC+0Lkg0LfQsNC/?=
+ =?utf-8?b?0LjRgdC4IGRqYW5nbzU=?=
+From: jdango
+To: django5@django.ru
+Date: Thu, 22 Oct 2020 09:20:18 -0000
+Message-ID: <160335841883.853.4475673649298283694@amkolotov-HP>
+
+Для подтверждения учетной записи django5 на портале               http://localhost:8000 перейдите по ссылке:
+ http://localhost:8000/auth/verify/django5@django.ru/0c077ee31c33c3b5075573686bcf87178e965c80/
+-------------------------------------------------------------------------------
