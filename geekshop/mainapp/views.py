@@ -8,12 +8,12 @@ from basketapp.models import Basket
 from .models import ProductCategory, Product, Contacts
 
 
-def get_basket(user):
-    if user.is_authenticated:
-        basket = Basket.objects.filter(user=user)
-    else:
-        basket = []
-    return basket
+# def get_basket(user):
+#     if user.is_authenticated:
+#         basket = Basket.objects.filter(user=user)
+#     else:
+#         basket = []
+#     return basket
 
 
 def get_hot_product():
@@ -46,7 +46,6 @@ class MainView(ListView):
         context = super().get_context_data(**kwargs)
         context.update({
             'title': 'главная',
-            'basket': get_basket(self.request.user),
         })
         return context
 
@@ -113,7 +112,6 @@ class HotProductTemplateView(TemplateView):
             'category_menu': ProductCategory.objects.all(),
             'hot_product': hot_product,
             'sample_products': get_sample_products(hot_product),
-            'basket': get_basket(self.request.user)
         })
         return context
 
@@ -140,7 +138,6 @@ class ProductsListView(ListView):
 
         title = 'продукты'
         category_menu = ProductCategory.objects.all()
-        basket = get_basket(self.request.user)
 
         if self.kwargs['pk'] == 0:
             category = {
@@ -153,7 +150,6 @@ class ProductsListView(ListView):
         context.update({
             'title': title,
             'category_menu': category_menu,
-            'basket': basket,
             'category': category,
         })
 
@@ -184,7 +180,6 @@ class ProductDetailView(DetailView):
         context.update({
             'sample_products': get_sample_products(self.object),
             'category_menu': ProductCategory.objects.all(),
-            'basket': get_basket(self.request.user),
         })
         return context
 
@@ -208,6 +203,5 @@ class ContactView(TemplateView):
         context = super().get_context_data(**kwargs)
         context.update({
             'contacts': Contacts.objects.all(),
-            'basket': get_basket(self.request.user),
         })
         return context

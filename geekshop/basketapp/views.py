@@ -65,5 +65,3 @@ def edit(request, pk, quantity):
 
         return JsonResponse({'result': result})
 
-def view(request):
-    pass
