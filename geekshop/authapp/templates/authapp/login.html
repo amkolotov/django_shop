@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block content %}
+
+    {% if from_register %}
+        Для окончания регистрации пройдите по ссылке на email.
+    {% endif %}
+
     <form class="form-horizontal" action="{% url 'auth:login' %}" method="post">
         {% csrf_token %}
         {% if next %}
@@ -17,5 +22,10 @@
     </form>
     <button class="btn btn-round form-control">
         <a href="{% url 'auth:register' %}">Зарегистрироваться</a>
+    </button>
+    <button class="btn btn-round form-control">
+        <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
+            Вход через Google
+        </a>
     </button>
 {% endblock %}
