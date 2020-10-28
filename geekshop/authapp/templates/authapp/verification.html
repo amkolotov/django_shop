@@ -2,19 +2,14 @@
 {% load static %}
 
 {% block content %}
-    {% if request.method == 'GET' %}
-        {% if user.is_authenticated %}
-            <h3>Поздравляем!</h3>
-            <br>
-            <h4>Пользователь {{ user.username }} подтвержден.</h4>
-        {% else %}
-            <h3>Верификация не пройдена.</h3>
-        {% endif %}
+    {% if user.is_authenticated %}
+        <h3>Поздравляем!</h3>
         <br>
+        <h4>Пользователь {{ user.username }} подтвержден.</h4>
     {% else %}
-            <h3>Для окончания регистрации пройдите по ссылке, направленной на email</h3>
+        <h3>Верификация не пройдена.</h3>
     {% endif %}
-
+    <br>
     <button class="btn btn-round form-control">
         <a href="{% url 'main' %}">на главную</a>
     </button>
