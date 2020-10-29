@@ -1,6 +1,6 @@
 from django.db import models
 
-from geekshop import settings
+from django.conf import settings
 from mainapp.models import Product
 
 
