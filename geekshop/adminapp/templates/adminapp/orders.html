@@ -1,0 +1,36 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="categories_list">
+        {% for object in object_list %}
+            <div class="category_record {% if not object.is_active %}not_active{% endif %}">
+                <div class="order">
+                    Заказ №{{ object.pk }}<br>
+                    Пользователь: {{ object.user.username }}<br>
+                    Сумма: {{ object.get_total_cost }}<br>
+                    Статус: {{ object.get_status_display }}
+                </div>
+                <div class="category_actions">
+                    <button>
+                        <a href="{% url 'admin:order_status_change' object.pk %}">
+                            {% if object.status == 'FM' %}
+                                отправить на формирование
+                            {% endif %}
+                            {% if object.status == 'STP' %}
+                                отправить в обработку
+                            {% endif %}
+                            {% if object.status == 'RDY' %}
+                                отправить на выдачу
+                            {% endif %}
+
+                        </a>
+                    </button>
+
+                </div>
+
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

@@ -289,6 +289,14 @@ html, body {
     width: 150px;
     font-size: 150%;
 }
+.categories_list .order {
+    display: block;
+    float: left;
+    margin-top: 15px;
+    margin-left: 25px;
+    width: 500px;
+    font-size: 150%;
+}
 
 .category_record .category_actions {
     display: block;

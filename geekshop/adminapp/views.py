@@ -9,6 +9,7 @@ from adminapp.forms import ShopUserAdminEditForm, ProductEditForm
 from authapp.forms import ShopUserRegisterForm
 from authapp.models import ShopUser
 from mainapp.models import ProductCategory, Product
+from orderapp.models import Order
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -247,3 +248,23 @@ def product_delete(request, pk):
     }
 
     return render(request, 'adminapp/product_delete.html', context)
+
+
+class OrdersListView(ListView):
+    model = Order
+    template_name = 'adminapp/orders.html'
+
+    def get_queryset(self):
+        return super().get_queryset().exclude(status=Order.CANCEL)
+
+
+def order_status_change(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+    if order.status == Order.FORMING:
+        order.status = Order.SENT_TO_PROCEED
+    elif order.status == Order.SENT_TO_PROCEED:
+        order.status = Order.READY
+    elif order.status == Order.READY:
+        order.status = Order.CANCEL
+    order.save()
+    return HttpResponseRedirect(reverse('admin:orders'))
