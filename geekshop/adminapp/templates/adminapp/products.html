@@ -33,16 +33,17 @@
                             удалить
                         </a>
                     </button>
-                    <div class="summary">
-                        <b>цена</b>
-                        <p>{{ object.price }} руб</p>
-                        <b>количество</b>
-                        <p>{{ object.quentity }}</p>
-                    </div>
-                    <div class="product_desc">
-                        {{ object.short_desc|title }}
-                    </div>
                 </div>
+                <div class="summary">
+                    <b>цена</b>
+                    <p>{{ object.price }} руб</p>
+                    <b>количество</b>
+                    <p>{{ object.quantity }}</p>
+                </div>
+                <div class="product_desc">
+                    {{ object.short_desc|title }}
+                </div>
+
             </div>
         {% endfor %}
     </div>
