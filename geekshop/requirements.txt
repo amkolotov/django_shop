@@ -22,3 +22,4 @@ sqlparse==0.4.1
 urllib3==1.25.11
 virtualenv==16.7.7
 virtualenv-clone==0.5.3
+psycopg2-binary
