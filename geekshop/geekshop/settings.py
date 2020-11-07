@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'social_django',
 
     'debug_toolbar',
-    'template_profiler_panel'
+    'template_profiler_panel',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +61,7 @@ MIDDLEWARE = [
 
     'social_django.middleware.SocialAuthExceptionMiddleware',
 
-    'debug_toolbar.middleware.Debug.Toolbar.Middleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 if DEBUG:
