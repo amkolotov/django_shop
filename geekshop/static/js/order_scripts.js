@@ -45,7 +45,7 @@ window.onload = function () {
         removed: deleteOrderItem,
     });
 
-    $('.order-form select').change(function () {
+    $('.order-form').on('change', 'select', function () {
         let target = event.target;
         orderitem_num = parseInt(target.name.replace('orderitems-', '').replace('-product', ''));
         let orderitem_product_pk = target.options[target.selectedIndex].value;
