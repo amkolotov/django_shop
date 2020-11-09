@@ -17,17 +17,17 @@ from .models import ProductCategory, Product, Contacts
 
 
 def get_hot_product():
-    products = Product.objects.all()
+    products = Product.objects.filter(is_active=True, category__is_active=True).select_related('category')
     return random.sample(list(products), 1)[0]
 
 
 def get_sample_products(hot_product):
-    sample_products = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk)[:3]
+    sample_products = Product.objects.filter(category=hot_product.category, is_active=True).exclude(pk=hot_product.pk)[:3]
     return sample_products
 
 
 # def main(request):
-#     products = Product.objects.all()[:4]
+#     products = Product.objects.filter(is_active=True, category__is_active=True).select_related('category')[:4]
 #     title = 'главная'
 #     context = {
 #         'title': title,
@@ -38,7 +38,7 @@ def get_sample_products(hot_product):
 
 
 class MainView(ListView):
-    queryset = Product.objects.all()[:4]
+    queryset = Product.objects.filter(is_active=True, category__is_active=True).select_related('category')[:4]
     context_object_name = 'products'
     template_name = 'mainapp/index.html'
 
@@ -109,7 +109,7 @@ class HotProductTemplateView(TemplateView):
         hot_product = get_hot_product()
         context.update({
             'title': 'продукты',
-            'category_menu': ProductCategory.objects.all(),
+            'category_menu': ProductCategory.objects.filter(is_active=True),
             'hot_product': hot_product,
             'sample_products': get_sample_products(hot_product),
         })
@@ -179,7 +179,7 @@ class ProductDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context.update({
             'sample_products': get_sample_products(self.object),
-            'category_menu': ProductCategory.objects.all(),
+            'category_menu': ProductCategory.objects.filter(is_active=True),
         })
         return context
 
