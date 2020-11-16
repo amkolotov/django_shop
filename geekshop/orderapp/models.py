@@ -36,17 +36,24 @@ class Order(models.Model):
     def __str__(self):
         return f'Текущий заказ: {self.id}'
 
-    def get_total_quantity(self):
-        items = self.orderitems.select_related()
-        return sum([x.quantity for x in items])
+    # def get_total_quantity(self):
+    #     items = self.orderitems.select_related()
+    #     return sum([x.quantity for x in items])
 
     def get_product_type_quantity(self):
         items = self.orderitems.select_related()
         return len(items)
 
-    def get_total_cost(self):
+    # def get_total_cost(self):
+    #     items = self.orderitems.select_related()
+    #     return sum([x.quantity * x.product.price for x in items])
+
+    def get_summary(self):
         items = self.orderitems.select_related()
-        return sum([x.quantity * x.product.price for x in items])
+        return {
+            'total_cost': sum([x.quantity * x.product.price for x in items]),
+            'total_quantity': sum([x.quantity for x in items])
+        }
 
     # переопределение метода удаления объекта
     def delete(self):

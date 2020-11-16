@@ -10,11 +10,11 @@ from mainapp.models import Product
 @login_required
 def basket(request):
     title = 'корзина'
-    basket = Basket.objects.filter(user=request.user).order_by('product__category')
+    #basket = Basket.objects.filter(user=request.user).order_by('product__category')
 
     context = {
         'title': title,
-        'basket': basket,
+        #'basket': basket,
     }
     return render(request, 'basketapp/basket.html', context)
 
