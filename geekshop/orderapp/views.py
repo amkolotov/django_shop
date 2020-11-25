@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.db.models import F
 from django.db.models.signals import pre_save, pre_delete
 from django.dispatch import receiver
 from django.forms import inlineformset_factory
@@ -67,7 +68,7 @@ class OrderItemsCreate(CreateView):
                 orderitems.save()
 
         # удаляем пустой заказ
-        if self.object.get_total_cost() == 0:
+        if self.object.get_summary()['total_cost'] == 0:
             self.object.delete()
 
         return super(OrderItemsCreate, self).form_valid(form)
@@ -113,7 +114,7 @@ class OrderItemsUpdate(UpdateView):
                 orderitems.save()
 
         # удаляем пустой заказ
-        if self.object.get_total_cost() == 0:
+        if self.object.get_summary()['total_cost'] == 0:
             self.object.delete()
 
         return super(OrderItemsUpdate, self).form_valid(form)
@@ -136,16 +137,17 @@ def order_forming_complete(request, pk):
 def product_quantity_update_save(sender, update_fields, instance, **kwargs):
     if update_fields is 'quantity' or 'product':
         if instance.pk:
-            instance.product.quantity -= instance.quantity - sender.objects.get(pk=instance.pk).quantity
+            instance.product.quantity -= F('quantity') - sender.objects.get(pk=instance.pk).quantity
         else:
-            instance.product.quantity -= instance.quantity
+            instance.product.quantity -= F('quantity')
         instance.product.save()
 
 
 @receiver(pre_delete, sender=OrderItem)
 @receiver(pre_delete, sender=Basket)
 def product_quantity_update_delete(sender, instance, **kwargs):
-    instance.product.quantity += instance.quantity
+    # instance.product.quantity += instance.quantity
+    instance.product.quantity += F('quantity')
     instance.product.save()
 
 

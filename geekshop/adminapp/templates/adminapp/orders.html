@@ -12,7 +12,7 @@
                     Статус: {{ object.get_status_display }}
                 </div>
                 <div class="category_actions">
-                    <button>
+                    <button class="btn btn-secondary">
                         <a href="{% url 'admin:order_status_change' object.pk %}">
                             {% if object.status == 'FM' %}
                                 отправить на формирование

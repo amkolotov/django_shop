@@ -92,12 +92,13 @@ def get_products_in_category_ordered_by_price(pk):
 
 def get_hot_product():
     products = get_products()
+    if not products:
+        products = Product.objects.filter(is_active=False).select_related('category')
     return random.sample(list(products), 1)[0]
 
 
 def get_sample_products(hot_product):
-    sample_products = Product.objects.filter(category=hot_product.category, is_active=True).exclude(pk=hot_product.pk)[:3]
-    return sample_products
+    return Product.objects.filter(category=hot_product.category, is_active=True).exclude(pk=hot_product.pk)[:3]
 
 
 # def main(request):
@@ -217,7 +218,7 @@ class ProductsListView(ListView):
                 'name': 'все',
             }
         else:
-            category = get_category
+            category = get_category(self.kwargs['pk'])
 
         context.update({
             'title': title,
@@ -277,5 +278,6 @@ class ContactView(TemplateView):
         context = super().get_context_data(**kwargs)
         context.update({
             'contacts': Contacts.objects.all(),
+            'title': 'Контакты'
         })
         return context
